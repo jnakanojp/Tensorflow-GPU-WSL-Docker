@@ -1,0 +1,18 @@
+version: "3"
+services:
+  tensorflow-2.12-gpu:
+    build: .
+    volumes:
+      - /home/jnakano/work:/root/work
+    working_dir: /root/work
+    tty: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [ gpu ]
+    ports:
+      - 8888:8888
+      - 6006:6006
+    command: /bin/bash
